@@ -8,8 +8,21 @@ public class BS_Tree<T extends Comparable<? super T>> {
     }
 
     public boolean inneholder(T element) {
-        // a) fyll inn – se nærmere beskrivelse i oppgaven
-        return true;
+        BinaerTreNode<T> p = this.rot;
+        boolean funnet = false;
+
+        while (!funnet && p != null) {
+            int sml = element.compareTo(p.element);
+            if (sml == 0) {
+                funnet = true;
+            } else if (sml < 0) {
+                p = p.venstre;
+            } else {
+                p = p.hoyre;
+            }
+        }
+
+        return funnet;
     }
 
     public void minkende() {
@@ -18,6 +31,14 @@ public class BS_Tree<T extends Comparable<? super T>> {
 
     private void visMinkende(BinaerTreNode<T> t) {
         // b) fyll inn – se nærmere beskrivelse i oppgaven
+
+        // tomt -> basis gjer ingenting
+
+        if (t != null) {
+            visMinkende(t.hoyre);
+            System.out.println(t.element + " ");
+            visMinkende(t.venstre);
+        }
     }
 
     public int toBarn() {

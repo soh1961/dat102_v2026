@@ -11,12 +11,25 @@ public class LenketMengde<T> implements MengdeADT<T> {
 
     @Override
     public boolean inneholder(T element) {
-        // fyll inn
+        Node<T> p = forste;
+        while (p != null) {
+            if (element.equals(p.data)){
+                return true;
+            } else {
+                p = p.neste;
+            }
+        }
+
         return false;
     }
 
     @Override
     public void leggTil(T element) {
-        // fyll inn
+        if (!inneholder(element)) {
+            Node<T> ny = new Node<>(element);
+            ny.neste = forste;
+            forste = ny;
+            antall++;
+        }
     }
 }
